@@ -1,0 +1,9 @@
+.popup__opened {
+  display: flex;
+}
+@media screen and (max-width: 640px) {
+  .popup__opened {
+    width: 282px;
+    height: 322px;
+  }
+}

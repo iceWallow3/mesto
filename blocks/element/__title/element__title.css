@@ -1,0 +1,16 @@
+.element__title {
+  color: black;
+  max-width: 246px;
+  min-height: 23px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  margin-left: 21px;
+  /*
+margin-top: 25px;
+margin-right: 15px;
+margin-bottom: 31px;
+*/
+}

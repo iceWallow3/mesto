@@ -1,0 +1,10 @@
+.popup__black {
+  max-width: 358px;
+  min-height: 50px;
+  background: #000000;
+  border-radius: 2px;
+  margin-top: 60px;
+}
+.popup__black:hover {
+  opacity: 0.8;
+}
