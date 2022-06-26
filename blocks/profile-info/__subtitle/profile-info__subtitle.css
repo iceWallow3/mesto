@@ -1,6 +1,5 @@
 .profile-info__subtitle {
-  width: 336px;
-  height: 18px;
+  max-width: 336px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
