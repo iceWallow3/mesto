@@ -17,19 +17,17 @@
 }
 @media screen and (max-width: 640px) {
   .popup__close {
-    right: 25px;
+    right: 20px;
     top: -50px;
   }
 }
 @media screen and (max-width: 540px) {
   .popup__close {
-    right: 105px;
     top: -50px;
   }
 }
 @media screen and (max-width: 410px) {
   .popup__close {
-    right: 125px;
     top: -50px;
   }
 }

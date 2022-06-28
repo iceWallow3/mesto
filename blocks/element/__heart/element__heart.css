@@ -9,6 +9,7 @@
   width: 22px;
   height: 19px;
   z-index: 3;
+  cursor: pointer;
 }
 .element__heart:hover {
   opacity: 0.5;

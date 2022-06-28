@@ -7,6 +7,15 @@
   line-height: 114%;
   margin: 0;
   margin-top: 20px;
-  margin-right: 0;
+  margin-right: 0px;
   display: flex;
+}
+@media screen and (max-width: 660px) {
+  .profile-info__title {
+    max-width: 189px;
+    font-size: 27px;
+    line-height: 33px;
+    text-align: center;
+    margin-right: 0px;
+  }
 }

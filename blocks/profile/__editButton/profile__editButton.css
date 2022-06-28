@@ -1,16 +1,16 @@
 .profile__editButton {
   width: 24px;
   height: 24px;
-  padding-top: 36px;
   margin-right: 200px;
   background-image: url(../../../images/Edit-button.png);
   background-repeat: no-repeat;
+  background-size: contain;
   border: none;
   outline: none;
   font: inherit;
   color: inherit;
   background-color: transparent;
-  margin-top: 37.5px;
+  margin-top: 35px;
 }
 .profile__editButton:hover {
   opacity: 0.6;
@@ -19,5 +19,50 @@
 @media screen and (max-width: 892px) {
   .profile__editButton {
     margin-right: 0px;
+  }
+}
+@media screen and (max-width: 660px) {
+  .profile__editButton {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 31%;
+    top: 36.5%;
+  }
+}
+@media screen and (max-width: 636px) {
+  .profile__editButton {
+    right: 29%;
+  }
+}
+@media screen and (max-width: 574px) {
+  .profile__editButton {
+    right: 27%;
+  }
+}
+@media screen and (max-width: 520px) {
+  .profile__editButton {
+    right: 24%;
+  }
+}
+@media screen and (max-width: 458px) {
+  .profile__editButton {
+    right: 21%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .profile__editButton {
+    right: 18%;
+  }
+}
+@media screen and (max-width: 363px) {
+  .profile__editButton {
+    right: 15%;
+  }
+}
+@media screen and (max-width: 347px) {
+  .profile__editButton {
+    right: 12%;
   }
 }

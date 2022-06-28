@@ -1,10 +1,19 @@
 .popup__black {
-  max-width: 358px;
-  min-height: 50px;
+  width: 358px;
+  height: 50px;
   background: #000000;
   border-radius: 2px;
-  margin-top: 60px;
+  margin-top: 48px;
 }
 .popup__black:hover {
   opacity: 0.8;
+}
+@media screen and (max-width: 641px) {
+  .popup__black {
+    width: 238px;
+    height: 46px;
+    background: #000000;
+    border-radius: 2px;
+    margin-top: 45px;
+  }
 }

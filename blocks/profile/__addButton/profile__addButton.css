@@ -3,10 +3,54 @@
   height: 50px;
   background-image: url(../../../images/Add-button.png);
   background-color: transparent;
+  background-repeat: no-repeat;
   border: none;
   margin-top: 36.5px;
 }
 .profile__addButton:hover {
   opacity: 0.6;
   transition: ease-in-out 0.3s;
+}
+@media screen and (max-width: 660px) {
+  .profile__addButton {
+    width: 282px;
+    height: 50px;
+    background-image: url(../../../images/bigPlus.png);
+    margin-left: 185px;
+  }
+}
+@media screen and (max-width: 595px) {
+  .profile__addButton {
+    margin-left: 155px;
+  }
+}
+@media screen and (max-width: 520px) {
+  .profile__addButton {
+    margin-left: 140px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .profile__addButton {
+    margin-left: 120px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .profile__addButton {
+    margin-left: 100px;
+  }
+}
+@media screen and (max-width: 431px) {
+  .profile__addButton {
+    margin-left: 80px;
+  }
+}
+@media screen and (max-width: 398px) {
+  .profile__addButton {
+    margin-left: 60px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .profile__addButton {
+    margin-left: 40px;
+  }
 }

@@ -4,3 +4,8 @@
   background-image: url(../../../images/image-mesto.png);
   margin-bottom: 41px;
 }
+@media screen and (max-width: 884px) {
+  .header__logo {
+    margin-left: 20px;
+  }
+}
