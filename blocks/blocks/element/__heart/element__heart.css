@@ -1,0 +1,26 @@
+.element__heart {
+  background-image: url(../../../images/whiteHeart.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  width: 22px;
+  height: 19px;
+  z-index: 3;
+  cursor: pointer;
+  margin-left: 238px;
+  position: relative;
+  top: -6%;
+}
+.element__heart:hover {
+  opacity: 0.5;
+  transition: ease-in-out 0.3s;
+}
+.element__heart:active {
+  background-image: url(../../../images/blackHeart.svg);
+  color: black;
+  opacity: 1;
+  transition: ease 0.1s;
+}
