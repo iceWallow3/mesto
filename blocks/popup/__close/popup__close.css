@@ -1,5 +1,5 @@
 .popup__close {
-  background-image: url(../../../images/Close\ Icon.png);
+  background-image: url(../../../images/krestBig.svg);
   background-size: 35px 35px;
   width: 35px;
   height: 35px;
@@ -19,15 +19,6 @@
   .popup__close {
     right: 20px;
     top: -50px;
-  }
-}
-@media screen and (max-width: 540px) {
-  .popup__close {
-    top: -50px;
-  }
-}
-@media screen and (max-width: 410px) {
-  .popup__close {
-    top: -50px;
+    background-image: url(../../../images/krestSmall.svg);
   }
 }

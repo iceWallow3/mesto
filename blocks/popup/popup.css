@@ -8,32 +8,5 @@
   justify-content: center;
   align-items: center;
   display: none;
-}
-@media screen and (max-width: 641px) {
-  .popup {
-    position: fixed;
-    top: 16%;
-    left: 30%;
-    bottom: 0;
-    right: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    display: none;
-  }
-}
-@media screen and (max-width: 477px) {
-  .popup {
-    left: 25%;
-  }
-}
-@media screen and (max-width: 460px) {
-  .popup {
-    left: 20%;
-  }
-}
-@media screen and (max-width: 400px) {
-  .popup {
-    left: 15%;
-  }
+  z-index: 3;
 }
