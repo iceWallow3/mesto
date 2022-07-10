@@ -3,21 +3,21 @@ const popup = document.querySelector('.popup')
 const closePopupButton = document.querySelector('.popup__close')
 
 const titleElement = document.querySelector('.profile__title')
-const nameFieldElement = document.querySelector('.popup-input-name')
+const nameFieldElement = document.querySelector('.popup__input_name')
 
  const subtitleElement = document.querySelector('.profile__subtitle')
- const surnameFieldElement = document.querySelector('.popup-input-surname')
+ const surnameFieldElement = document.querySelector('.popup__input_surname')
 
  const formElement = document.querySelector('.popup__form')
 
 //  console.log(closePopupButton)
 
 function openPopup(popupElement) {
-  popupElement.classList.add('popup-opened')
+  popupElement.classList.add('popup_opened')
 }
 
 function closePopup(popupElement) {
-    popupElement.classList.remove('popup-opened')
+    popupElement.classList.remove('popup_opened')
 }
 
 editButton.addEventListener('click', function() {

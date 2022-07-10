@@ -10,6 +10,7 @@
   background-color: transparent;
   font: inherit;
   color: inherit;
+  cursor: pointer;
 }
 .popup__close:hover {
   opacity: 0.6;
