@@ -29,7 +29,12 @@
     height: 18px;
     display: flex;
     margin: 0;
-    margin-left: 250px;
-    margin-top: -17px;
+    margin-left: 246px;
+    margin-top: -57px;
+  }
+}
+@media screen and (max-width: 321px) {
+  .profile__edit-button {
+    margin-top: -55px;
   }
 }

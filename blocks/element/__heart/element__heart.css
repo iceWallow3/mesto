@@ -10,9 +10,9 @@
   height: 19px;
   z-index: 3;
   cursor: pointer;
-  margin-left: 238px;
-  position: relative;
-  top: -6%;
+  margin: 0;
+  margin-top: 5px;
+  margin-right: 5px;
 }
 .element__heart:hover {
   opacity: 0.5;

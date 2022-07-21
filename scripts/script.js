@@ -3,10 +3,10 @@ const popup = document.querySelector('.popup')
 const closePopupButton = document.querySelector('.popup__close')
 
 const titleElement = document.querySelector('.profile__title')
-const nameFieldElement = document.querySelector('.popup__input_name')
+const nameFieldElement = document.querySelector('.popup__input_type_name')
 
  const subtitleElement = document.querySelector('.profile__subtitle')
- const surnameFieldElement = document.querySelector('.popup__input_surname')
+ const surnameFieldElement = document.querySelector('.popup__input_type_surname')
 
  const formElement = document.querySelector('.popup__form')
 

@@ -6,10 +6,20 @@
   display: flex;
   justify-content: space-between;
 }
+@media screen and (max-width: 892px) {
+  .profile {
+    justify-content: space-around;
+  }
+}
 @media screen and (max-width: 660px) {
   .profile {
     display: block;
     max-width: 282px;
-    min-height: 286px;
+  }
+}
+@media screen and (max-width: 321px) {
+  .profile {
+    margin-left: 19px;
+    margin-right: 19px;
   }
 }

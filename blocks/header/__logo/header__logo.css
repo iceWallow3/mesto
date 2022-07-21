@@ -9,9 +9,11 @@
     margin-left: 20px;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 321px) {
   .header__logo {
+    margin-top: 28px;
     margin-left: 27px;
+    margin-bottom: 31.6px;
     width: 103.74px;
     height: 24.4px;
   }
