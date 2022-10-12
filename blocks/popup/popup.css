@@ -7,6 +7,11 @@
   background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-  display: none;
   z-index: 3;
+  /* display: none; */
+  /* position: absolute; */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+  display: flex;
 }

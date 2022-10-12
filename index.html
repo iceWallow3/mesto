@@ -36,8 +36,9 @@
       </section>
 
       <section class="elements">
-        <article class="element">
+        <!-- <article class="element">
           <img src="images/house.jpg" class="element__image" alt="домик" />
+          <button class="element__trash"></button>
           <div class="element__container">
             <h2 class="element__title">Карачаевск</h2>
             <button
@@ -49,6 +50,7 @@
         </article>
         <article class="element">
           <img src="images/sky.jpg" class="element__image" alt="закат" />
+          <button class="element__trash"></button>
           <div class="element__container">
             <h2 class="element__title">Гора Эльбрус</h2>
             <button
@@ -60,6 +62,7 @@
         </article>
         <article class="element">
           <img src="images/mountain.jpg" class="element__image" alt="гора" />
+          <button class="element__trash"></button>
           <div class="element__container">
             <h2 class="element__title">Домбай</h2>
             <button
@@ -71,6 +74,7 @@
         </article>
         <article class="element">
           <img src="images/sky.jpg" class="element__image" alt="закат" />
+          <button class="element__trash"></button>
           <div class="element__container">
             <h2 class="element__title">Гора Эльбрус</h2>
             <button
@@ -82,6 +86,7 @@
         </article>
         <article class="element">
           <img src="images/mountain.jpg" class="element__image" alt="гора" />
+          <button class="element__trash"></button>
           <div class="element__container">
             <h2 class="element__title">Домбай</h2>
             <button
@@ -93,6 +98,7 @@
         </article>
         <article class="element">
           <img src="images/house.jpg" class="element__image" alt="домик" />
+          <button class="element__trash"></button>
           <div class="element__container">
             <h2 class="element__title">Карачаево-Ч...</h2>
             <button
@@ -101,14 +107,30 @@
               class="element__heart"
             ></button>
           </div>
-        </article>
+        </article> -->
       </section>
     </main>
     <footer class="footer">
       <p class="footer__author">© 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <!-- template -->
+    <template class="template">
+      <article class="element">
+        <img src="1" class="element__image" alt="картинка" />
+        <button class="element__trash"></button>
+        <div class="element__container">
+          <h2 class="element__title">Карачаевск</h2>
+          <button
+            type="button"
+            aria-label="Лайк"
+            class="element__heart"
+          ></button>
+        </div></article
+    ></template>
+
+    <!-- ПОПАП 1 (изменить текст)-->
+    <div class="popup" id="edit">
       <div class="popup__content">
         <button type="button" aria-label="Закрыть" class="popup__close">
           <!-- <img src="/images/Close Icon.png" alt="крестик" /> -->
@@ -116,21 +138,101 @@
         <h3 class="popup__title">Редактировать профиль</h3>
         <form name="text" action="handler.php" class="popup__form">
           <input
-            name="firstName"
+            name="namePopupOne"
             type="text"
             class="popup__input popup__input_type_name"
             placeholder="Имя"
           />
           <input
-            name="secondName"
+            name="surnamePopupOne"
             type="text"
             class="popup__input popup__input_type_surname"
             placeholder="Описание"
           />
-          <button aria-label="Сохранить" type="submit" class="popup__button">
+          <button
+            aria-label="Сохранить"
+            type="submit"
+            class="popup__button popup__button_save"
+          >
             Сохранить
           </button>
         </form>
+      </div>
+    </div>
+
+    <!-- ПОПАП 2 (добавить карту) -->
+    <div class="popup" id="add">
+      <div class="popup__content">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close popup__close-second"
+        >
+          <!-- <img src="/images/Close Icon.png" alt="крестик" /> -->
+        </button>
+        <h3 class="popup__title">Новое место</h3>
+        <form name="text" action="handler.php" class="popup__form">
+          <input
+            name="namePopupTwo"
+            type="text"
+            class="popup__input popup__input_type_name popup__input_type_name-two"
+            placeholder="Название"
+          />
+          <input
+            name="surnamePopupTwo"
+            type="text"
+            class="popup__input popup__input_type_surname popup__input_type_surname-two"
+            placeholder="Ссылка на картинку"
+          />
+          <button
+            aria-label="Создать"
+            type="submit"
+            class="popup__button popup__button-two"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!--  ПОПАП 3 (картинка)-->
+    <div class="popup" id="picture">
+      <div class="popup__content-picture">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close popup__close-third"
+        ></button>
+        <figure class="popup__figure">
+          <img src="1" alt="большая картинка" class="popup__figure-image" />
+          <p class="popup__figure-text">текст попопа с картинкой</p>
+          <!-- тектс попапа с картинкой -->
+        </figure>
+
+        <!-- <img src="/images/Close Icon.png" alt="крестик" /> -->
+
+        <!-- <h3 class="popup__title">Редактировать профиль</h3> -->
+        <!-- <form name="text" action="handler.php" class="popup__form"> -->
+        <!-- <input
+            name="namePopupOne"
+            type="text"
+            class="popup__input popup__input_type_name"
+            placeholder="Имя"
+          />
+          <input
+            name="surnamePopupOne"
+            type="text"
+            class="popup__input popup__input_type_surname"
+            placeholder="Описание"
+          />
+          <button
+            aria-label="Сохранить"
+            type="submit"
+            class="popup__button popup__button_save"
+          >
+            Сохранить
+          </button> -->
+        <!-- </form> -->
       </div>
     </div>
 
