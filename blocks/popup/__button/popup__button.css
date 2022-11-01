@@ -6,19 +6,43 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  color: white;
+
   border: none;
   outline: none;
   width: 358px;
   height: 50px;
-  background: #000000;
+
   border-radius: 2px;
   cursor: pointer;
 }
+
+/* .popup__button:valid {
+  background: #000000;
+  color: white;
+}
+
+.popup__button:invalid {
+  background: white;
+  color: black;
+} */
+.popup__button_valid {
+  background: #000000;
+  color: white;
+}
+
+.popup__button_invalid {
+  background: white;
+  color: black;
+  border: 1px solid #000000;
+  opacity: 0.2;
+}
+/* opacity: 0.2; */
+
 .popup__button:hover {
   opacity: 0.8;
   transition: ease-in 0.2s;
 }
+
 @media screen and (max-width: 400px) {
   .popup__button {
     max-width: 238px;

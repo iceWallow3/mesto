@@ -20,3 +20,6 @@
 .popup__input:nth-of-type(2n) {
   margin-top: 30px;
 }
+.popup__input:focus {
+  border: 2px solid #0fb0dd;
+}
