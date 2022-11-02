@@ -14,13 +14,13 @@ const formEditProfile = document.querySelector(".popup__form");
 // функция открытия попапа
 function openPopup(popupElement) {
   popupElement.classList.add("popup_opened");
+  document.addEventListener("keydown", closeWithEsc);
 }
 
 // функция закрытия попапа
 function closePopup(popupElement) {
   popupElement.classList.remove("popup_opened");
-  // это удалит данные во 2 попапе, если закрыть
-  // formAddCard.reset();
+  document.removeEventListener("keydown", closeWithEsc);
 }
 
 // попап редактирования
@@ -190,140 +190,23 @@ const likeCardElement = (evt) => {
 
 renderInitialCards();
 
-// formEditProfile форма 1 попапа
-// formAddCard форма 2 попапа
-// nameFieldElement  имя 1 попапа
-// surnameFieldElement о себе 1 попап
-// inputPopupName  // название карточк 2 попапа
-// inputPopupLink  // ссылка карточки 2 попапа
-
-// кнопка сохранить 1 попап
-const popupButtonSave = edit.querySelector("#popupButtonSave");
-
-// кнопка, которая меняется в зависимости от валидации (1 form)
-const setSubmitButtonState = (isActive) => {
-  if (isActive) {
-    // если функция валидна
-    popupButtonSave.removeAttribute("disabled"); // кнопка активной становится
-    popupButtonSave.classList.add("popup__button_valid"); // добавляется класс чк (черной кнопки)
-    popupButtonSave.classList.remove("popup__button_invalid"); // убирается класс ск (серой кнопки)
-  } else {
-    // если функция невалидна
-    popupButtonSave.setAttribute("disabled", true); // кнопка становится неактивной
-    popupButtonSave.classList.add("popup__button_invalid"); // добавляется класс ск
-    popupButtonSave.classList.remove("popup__button_valid"); // убирается класс чк
-  }
-};
-
-// объявляем валидате инпут 1 формы
-const validateInput = (inputElement) => {
-  // console.log(inputElement.id);
-
-  // ошибка 1 формы
-  const errorElement = formEditProfile.querySelector(
-    `#${inputElement.id}-error`
-  );
-
-  // console.log(errorElement);
-
-  // в этой функции будет вылазить текст ошибки если форма не прошла валидацию (1 форма)
-  if (inputElement.checkValidity()) {
-    // console.log("Инпут валидный");
-    errorElement.textContent = "";
-  } else {
-    // console.log("инпут НЕвалидный");
-    errorElement.textContent = inputElement.validationMessage;
-  }
-  if (formEditProfile.checkValidity()) {
-    setSubmitButtonState(true);
-  } else {
-    setSubmitButtonState(false);
-  }
-};
-
-// валидация 1 формы
-const validateForm = (evt) => {
-  evt.preventDefault();
-  // 1 форма
-  validateInput(nameFieldElement);
-  validateInput(surnameFieldElement);
-
-  // проверить, валидная ли форма
-  // if (formEditProfile.checkValidity()) {
-  //   console.log("Валидна 1 форма");
-  // } else {
-  //   console.log("НЕвалидана 1 форма");
-  // }
-};
-
-// отправка 1 формы
-formEditProfile.addEventListener("input", validateForm);
-
-// кнопка "создать"
-const popupButtonCreate = add.querySelector("#popupButtonCard");
-console.log(popupButtonCreate);
-
-const setSubmitButtonStateCard = (isActiveCard) => {
-  if (isActiveCard) {
-    // если функция валидна
-    popupButtonCreate.removeAttribute("disabled"); // кнопка активной становится
-    popupButtonCreate.classList.add("popup__button_valid"); // добавляется класс чк (черной кнопки)
-    popupButtonCreate.classList.remove("popup__button_invalid"); // убирается класс ск (серой кнопки)
-  } else {
-    // если функция невалидна
-    popupButtonCreate.setAttribute("disabled", true); // кнопка становится неактивной
-    popupButtonCreate.classList.add("popup__button_invalid"); // добавляется класс ск
-    popupButtonCreate.classList.remove("popup__button_valid"); // убирается класс чк
-  }
-};
-
-// Форма текста ошибки 2 попапа
-const validateInputCard = (inputElementCard) => {
-  const errorElementCard = formAddCard.querySelector(
-    `#${inputElementCard.id}-error`
-  );
-
-  if (inputElementCard.checkValidity()) {
-    // console.log("Валидна 2 форма");
-    errorElementCard.textContent = "";
-  } else {
-    // console.log("НЕвалидана 2 форма");
-    errorElementCard.textContent = inputElementCard.validationMessage;
-  }
-  // функция добавляет и убирает классы кнопке "создать"
-  if (formAddCard.checkValidity()) {
-    setSubmitButtonStateCard(true);
-  } else {
-    setSubmitButtonStateCard(false);
-  }
-};
-
-// валидация 2 формы
-const validateFormCard = (evt) => {
-  evt.preventDefault();
-  // 1 форма
-  validateInputCard(inputPopupName);
-  validateInputCard(inputPopupLink);
-
-  // проверить, валидная ли форма
-  if (formAddCard.checkValidity()) {
-    console.log("Валидна 2 форма");
-  } else {
-    console.log("НЕвалидана 2 форма");
-  }
-};
-
-// отправка 2 формы
-formAddCard.addEventListener("input", validateFormCard);
-
 // функция закрытия попапов (1  2  3)
-document.addEventListener("keydown", function (evt) {
+// document.addEventListener("keydown", function (evt) {
+//   if (evt.key === "Escape") {
+//     closePopup(popup);
+//     closePopup(popupAddCard);
+//     closePopup(picture);
+//   }
+// });
+// функция закрытия попапов (1  2  3)
+function closeWithEsc(evt) {
   if (evt.key === "Escape") {
+    const openedAnyPopup = document.querySelector(".popup_opened");
     closePopup(popup);
     closePopup(popupAddCard);
     closePopup(picture);
   }
-});
+}
 
 // функция закрытия попапа на оверлей
 const popupOverleyClose = Array.from(document.querySelectorAll(".popup"));
