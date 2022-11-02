@@ -10,6 +10,7 @@
 // const formError = popupForm.querySelector(`#${popupInputElement.id}-error`); // ошибка в форме
 
 //! создание всей фалидации с помощью одной функции
+
 // функция, показывает ошибку
 const showMeError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -43,7 +44,7 @@ const setEventListeners = (formElement) => {
 
   const buttonElement = formElement.querySelector(".popup__button"); // 1
 
-  toggleButtonState(inputList, buttonElement);
+  //   toggleButtonState(inputList, buttonElement); // валидация будет работать если нажать на люб кнопку в инпуте
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
@@ -73,8 +74,8 @@ const hasInvalidInput = (inputList) => {
 };
 
 // если поля невалидные, то кнопка (сохр, созд) блокируется
-const toggleButtonState = (inputList, buttonElement) => {
-  if (!hasInvalidInput(inputList)) {
+const toggleButtonState = (inputElement, buttonElement) => {
+  if (!hasInvalidInput(inputElement)) {
     buttonElement.classList.add("popup__button_valid");
     buttonElement.classList.remove("popup__button_invalid");
     buttonElement.removeAttribute("disabled");
@@ -86,6 +87,7 @@ const toggleButtonState = (inputList, buttonElement) => {
 };
 
 enableFullValidation();
+
 // setEventListeners(popupForm);
 
 // popupForm.addEventListener("input", function (evt) {
