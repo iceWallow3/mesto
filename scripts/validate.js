@@ -11,11 +11,20 @@
 
 //! создание всей фалидации с помощью одной функции
 
+const settings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input_error",
+};
+
 // функция, показывает ошибку
 const showMeError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   //   console.log(errorElement);
-  inputElement.classList.add("popup__input_error"); // если ничего не работает, попробуй убрать или добавить точку
+  inputElement.classList.add(settings.errorClass); // если ничего не работает, попробуй убрать или добавить точку
   errorElement.textContent = errorMessage;
   //   errorElement.classList.add("error"); // класс ошибки
 };
@@ -24,7 +33,7 @@ const showMeError = (formElement, inputElement, errorMessage) => {
 const hideOutError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   console.log(errorElement);
-  inputElement.classList.remove("popup__input_error");
+  inputElement.classList.remove(settings.errorClass);
   errorElement.textContent = "";
   //   errorElement.classList.remove("error"); // класс ошибки
 };
@@ -42,7 +51,9 @@ const checkInputValidity = (formElement, inputElement) => {
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
 
-  const buttonElement = formElement.querySelector(".popup__button"); // 1
+  const buttonElement = formElement.querySelector(
+    settings.submitButtonSelector
+  ); // 1
 
   //   toggleButtonState(inputList, buttonElement); // валидация будет работать если нажать на люб кнопку в инпуте
 
@@ -54,7 +65,7 @@ const setEventListeners = (formElement) => {
   });
 };
 
-const enableFullValidation = () => {
+const enableFullValidation = (settings) => {
   const formList = Array.from(document.querySelectorAll(".popup__form"));
 
   formList.forEach((formElement) => {
@@ -85,7 +96,9 @@ const toggleButtonState = (inputElement, buttonElement) => {
     buttonElement.setAttribute("disabled", true);
   }
 };
-enableFullValidation();
+// обьект сеттингс
+
+enableFullValidation(settings);
 // enableFullValidation({
 //   formSelector: ".popup__form",
 //   inputSelector: ".popup__input",
