@@ -16,8 +16,10 @@ const settings = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
+  popupButtonValid: "popup__button_valid",
+  popupButtonInValid: "popup__button_invalid",
   errorClass: "popup__input_error",
+
 };
 
 // функция, показывает ошибку
@@ -30,7 +32,7 @@ const showMeError = (formElement, inputElement, errorMessage) => {
 };
 
 // функция, которая убирает ошибку
-const hideOutError = (formElement, inputElement) => {
+const hideOutError = (formElement, inputElement, settings) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   console.log(errorElement);
   inputElement.classList.remove(settings.errorClass);
@@ -43,12 +45,12 @@ const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
     showMeError(formElement, inputElement, inputElement.validationMessage);
   } else {
-    hideOutError(formElement, inputElement);
+    hideOutError(formElement, inputElement, settings);
   }
 };
 
 // функция берет все инпуты, обходит их, и если есть ошибка - выдает её
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, settings) => {
   const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
 
   const buttonElement = formElement.querySelector(
@@ -60,7 +62,7 @@ const setEventListeners = (formElement) => {
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
       checkInputValidity(formElement, inputElement);
-      toggleButtonState(inputList, buttonElement);
+      toggleButtonState(inputList, buttonElement, settings);
     });
   });
 };
@@ -73,7 +75,7 @@ const enableFullValidation = (settings) => {
       evt.preventDefault();
     });
     // const fieldsetList = Array.from(formElement.querySelectorAll(".form__set")); //todo если что, потом вернуть
-    setEventListeners(formElement);
+    setEventListeners(formElement, settings);
   });
 };
 
@@ -85,18 +87,18 @@ const hasInvalidInput = (inputList) => {
 };
 
 // если поля невалидные, то кнопка (сохр, созд) блокируется
-const toggleButtonState = (inputElement, buttonElement) => {
+const toggleButtonState = (inputElement, buttonElement, settings) => {
   if (!hasInvalidInput(inputElement)) {
-    buttonElement.classList.add("popup__button_valid");
-    buttonElement.classList.remove("popup__button_invalid");
+    buttonElement.classList.add(settings.popupButtonValid);
+    buttonElement.classList.remove(settings.popupButtonInValid);
     buttonElement.removeAttribute("disabled");
   } else {
-    buttonElement.classList.add("popup__button_invalid");
-    buttonElement.classList.remove("popup__button_valid");
+    buttonElement.classList.add(settings.popupButtonInValid);
+    buttonElement.classList.remove(settings.popupButtonValid);
     buttonElement.setAttribute("disabled", true);
   }
 };
-// обьект сеттингс
+
 
 enableFullValidation(settings);
 // enableFullValidation({
