@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <img src="images/image-mesto.svg" alt="МЕСТО" class="header__logo" />
+      <!--  <div class="header__logo"></div> -->
+    </header>
+    <main>
+      <section class="profile">
+        <img
+          src="images/image-man.jpg"
+          alt="Фотка мужика (лучше не видеть)"
+          class="profile__avatar"
+        />
+        <!--  <div class="profile__avatar"></div> -->
+        <div class="profile__info">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button
+          type="button"
+          class="profile__edit-button"
+          aria-label="Редактировать"
+        ></button>
+        <button
+          type="button"
+          class="profile__add-button"
+          aria-label="Добавить"
+        ></button>
+      </section>
+
+      <section class="elements"></section>
+    </main>
+    <footer class="footer">
+      <p class="footer__author">© 2020 Mesto Russia</p>
+    </footer>
+
+    <!-- template -->
+    <template class="template">
+      <article class="element">
+        <img class="element__image" alt="картинка" />
+        <button class="element__trash"></button>
+        <div class="element__container">
+          <h2 class="element__title">Карачаевск</h2>
+          <button
+            type="button"
+            aria-label="Лайк"
+            class="element__heart"
+          ></button>
+        </div></article
+    ></template>
+
+    <!-- ПОПАП 1 (изменить текст)-->
+    <div class="popup" id="edit">
+      <div class="popup__content">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close"
+        ></button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form
+          id="formEdit"
+          name="formText"
+          action="handler.php"
+          class="popup__form"
+          novalidate
+        >
+          <input
+            id="user-name"
+            name="popupUserName"
+            type="text"
+            class="popup__input popup__input_type_name"
+            placeholder="Имя"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <span class="error" id="user-name-error"></span>
+          <input
+            id="user-about"
+            name="popupUserAbout"
+            type="text"
+            class="popup__input popup__input_type_about"
+            placeholder="Описание"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <span class="error" id="user-about-error"> </span>
+          <button
+            id="popupButtonSave"
+            aria-label="Сохранить"
+            type="submit"
+            class="popup__button popup__button_save popup__button_valid"
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ПОПАП 2 (добавить карту) -->
+    <div class="popup" id="add">
+      <div class="popup__content">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close"
+        ></button>
+        <h3 class="popup__title">Новое место</h3>
+        <form
+          id="formAdd"
+          name="formAddCard"
+          action="handler.php"
+          class="popup__form"
+          novalidate
+        >
+          <input
+            id="name-card"
+            name="popupNameCard"
+            type="text"
+            class="popup__input popup__input_type_name"
+            placeholder="Название"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <span class="error" id="name-card-error"> </span>
+          <input
+            id="url-card"
+            name="popupUrlCard"
+            type="url"
+            class="popup__input popup__input_type_about popup__input_type_url"
+            placeholder="Ссылка на картинку"
+            required
+          />
+          <span class="error" id="url-card-error"> </span>
+          <button
+            id="popupButtonCard"
+            aria-label="Создать"
+            type="submit"
+            class="popup__button popup__button-two popup__button_invalid"
+            required
+            disabled
+          >
+            Создать
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!--  ПОПАП 3 (картинка)-->
+    <div class="popup" id="picture">
+      <div class="popup__content-picture">
+        <button
+          type="button"
+          aria-label="Закрыть"
+          class="popup__close"
+        ></button>
+        <figure class="popup__figure">
+          <img alt="большая картинка" class="popup__figure-image" />
+          <p class="popup__figure-text">текст попопа с картинкой</p>
+          <!-- тектс попапа с картинкой -->
+        </figure>
+      </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/validate.js"></script>
+  </body>
+</html>
