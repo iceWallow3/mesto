@@ -1,6 +1,6 @@
 // 1 попап
 const editButton = document.querySelector(".profile__edit-button");
-const popup = document.querySelector(".popup");
+const profilePopup = document.querySelector("#edit");
 const closePopupButton = document.querySelector(".popup__close");
 
 const titleElement = document.querySelector(".profile__title");
@@ -31,9 +31,19 @@ editButton.addEventListener("click", function () {
   surnameFieldElement.value = subtitleElement.textContent;
   openPopup(popupEditProfile);
 });
-closePopupButton.addEventListener("click", function () {
-  closePopup(popupEditProfile);
+
+// функция закрытия всех крестиков 0_0
+const closeButtons = document.querySelectorAll(".popup__close");
+
+closeButtons.forEach((button) => {
+  const popup = button.closest(".popup");
+
+  button.addEventListener("click", () => closePopup(popup));
 });
+
+// closePopupButton.addEventListener("click", function () {
+//   closePopup(popupEditProfile);
+// });
 
 formEditProfile.addEventListener("submit", function (evt) {
   evt.preventDefault();
@@ -48,8 +58,14 @@ const addButton = document.querySelector(".profile__add-button");
 
 const popupAddCard = document.querySelector("#add");
 
+const buttonSaveTwo = add.querySelector(".popup__button"); // Кнопка
+
 addButton.addEventListener("click", function () {
   openPopup(popupAddCard);
+  buttonSaveTwo.classList.add("popup__button_invalid");
+  buttonSaveTwo.classList.remove("popup__button_valid");
+  buttonSaveTwo.setAttribute("disabled", true);
+  // эти 3 строчки для того, чтобы при повторном нажатии кнопка была неактивна
 });
 
 const closePopupAdd = add.querySelector(".popup__close");
@@ -57,8 +73,6 @@ const closePopupAdd = add.querySelector(".popup__close");
 closePopupAdd.addEventListener("click", function () {
   closePopup(popupAddCard);
 });
-
-const buttonSaveTwo = add.querySelector(".popup__button"); // Кнопка
 
 // попап закроется если нажать на "сохранить"
 const formAddCard = add.querySelector(".popup__form");
@@ -202,18 +216,18 @@ renderInitialCards();
 function closeWithEsc(evt) {
   if (evt.key === "Escape") {
     const openedAnyPopup = document.querySelector(".popup_opened");
-    closePopup(popup);
+    closePopup(profilePopup);
     closePopup(popupAddCard);
     closePopup(picture);
   }
 }
 
 // функция закрытия попапа на оверлей
-const popupOverleyClose = Array.from(document.querySelectorAll(".popup"));
-popupOverleyClose.forEach((overley) => {
+const OverleyClosePopups = Array.from(document.querySelectorAll(".popup"));
+OverleyClosePopups.forEach((overley) => {
   overley.addEventListener("click", (evt) => {
     if (evt.target === evt.currentTarget) {
-      closePopup(popup);
+      closePopup(profilePopup);
       closePopup(popupAddCard);
       closePopup(picture);
     }
