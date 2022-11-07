@@ -19,7 +19,6 @@ const settings = {
   popupButtonValid: "popup__button_valid",
   popupButtonInValid: "popup__button_invalid",
   errorClass: "popup__input_error",
-
 };
 
 // функция, показывает ошибку
@@ -41,7 +40,7 @@ const hideOutError = (formElement, inputElement, settings) => {
 };
 
 // функция проверяет на валидность элементы
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, settings) => {
   if (!inputElement.validity.valid) {
     showMeError(formElement, inputElement, inputElement.validationMessage);
   } else {
@@ -61,7 +60,7 @@ const setEventListeners = (formElement, settings) => {
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement);
+      checkInputValidity(formElement, inputElement, settings);
       toggleButtonState(inputList, buttonElement, settings);
     });
   });
@@ -98,7 +97,6 @@ const toggleButtonState = (inputElement, buttonElement, settings) => {
     buttonElement.setAttribute("disabled", true);
   }
 };
-
 
 enableFullValidation(settings);
 // enableFullValidation({
