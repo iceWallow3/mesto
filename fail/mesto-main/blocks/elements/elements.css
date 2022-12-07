@@ -1,0 +1,134 @@
+.elements {
+  max-width: 880px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 17px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 900px) {
+  .elements {
+    max-width: 581px;
+  }
+}
+@media screen and (max-width: 648px) {
+  .elements {
+    max-width: 282px;
+  }
+}
+@media screen and (max-width: 321px) {
+  .elements {
+    margin-top: 36px;
+  }
+}
+/*    1      */
+
+/* @media screen and (max-width: 887px) {
+  .elements {
+    margin-left: 150px;
+  }
+}
+@media screen and (max-width: 843px) {
+  .elements {
+    margin-left: 120px;
+  }
+}
+@media screen and (max-width: 786px) {
+  .elements {
+    margin-left: 100px;
+  }
+}
+@media screen and (max-width: 746px) {
+  .elements {
+    margin-left: 80px;
+  }
+}
+@media screen and (max-width: 699px) {
+  .elements {
+    margin-left: 50px;
+  }
+}
+@media screen and (max-width: 660px) {
+  .elements {
+    margin-left: 30px;
+  }
+}
+@media screen and (max-width: 596px) {
+  .elements {
+    margin-left: 150px;
+  }
+}
+@media screen and (max-width: 546px) {
+  .elements {
+    margin-left: 120px;
+  }
+}
+@media screen and (max-width: 472px) {
+  .elements {
+    margin-left: 100px;
+  }
+}
+@media screen and (max-width: 430px) {
+  .elements {
+    margin-left: 80px;
+  }
+}
+@media screen and (max-width: 395px) {
+  .elements {
+    margin-left: 50px;
+  }
+}
+@media screen and (max-width: 345px) {
+  .elements {
+    margin-left: 30px;
+  }
+} */
+
+/*    2      */
+
+/* @media screen and (max-width: 920px) {
+  .elements {
+    margin-left: 18%;
+  }
+}
+@media screen and (max-width: 870px) {
+  .elements {
+    margin-left: 13%;
+  }
+}
+@media screen and (max-width: 739px) {
+  .elements {
+    margin-left: 8%;
+  }
+}
+@media screen and (max-width: 739px) {
+  .elements {
+    margin-left: 8%;
+  }
+}
+@media screen and (max-width: 631px) {
+  .elements {
+    margin-left: 28%;
+  }
+}
+@media screen and (max-width: 533px) {
+  .elements {
+    margin-left: 23%;
+  }
+}
+@media screen and (max-width: 479px) {
+  .elements {
+    margin-left: 18%;
+  }
+}
+@media screen and (max-width: 420px) {
+  .elements {
+    margin-left: 13%;
+  }
+}
+@media screen and (max-width: 321px) {
+  .elements {
+    margin-left: 11%;
+  }
+} */

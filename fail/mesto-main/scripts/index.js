@@ -79,7 +79,7 @@ const formAddCard = add.querySelector(".popup__form");
 formAddCard.addEventListener("submit", function (evt) {
   evt.preventDefault();
   closePopup(popupAddCard);
-  submitAddCardPopup();
+  submitAddCardPopup(); // если что, это раскоментировать
   // validateForm();
 });
 
@@ -104,3 +104,19 @@ OverleyClosePopups.forEach((overley) => {
     }
   });
 });
+
+function createSong(title, artist) {
+  const newSong = {
+    title,
+    artist,
+    isLiked: false,
+    like: function () {
+      newSong.isLiked = !newSong.isLiked;
+    },
+  };
+
+  return newSong; // возвращаем этот объект
+}
+
+const oneSong = createSong("титл", "Артист");
+console.log(oneSong);
