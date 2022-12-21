@@ -35,7 +35,9 @@
         ></button>
       </section>
 
-      <section class="elements"></section>
+      <section class="elements">
+        <!-- Контейнер для добавления карточек -->
+      </section>
     </main>
     <footer class="footer">
       <p class="footer__author">© 2020 Mesto Russia</p>
@@ -146,10 +148,9 @@
             id="popupButtonCard"
             aria-label="Создать"
             type="submit"
-            class="popup__button popup__button-two popup__button_invalid"
-            required
-            disabled
+            class="popup__button popup__button-two popup__button_valid"
           >
+            <!-- disabled -->
             Создать
           </button>
         </form>
@@ -172,7 +173,8 @@
       </div>
     </div>
 
-    <script src="scripts/script.js"></script>
-    <script src="scripts/validate.js"></script>
+    <script type="module" src="scripts/index.js"></script>
+    <!-- <script src="scripts/Card.js"></script> -->
+    <!-- <script src="scripts/validate.js"></script> -->
   </body>
 </html>
