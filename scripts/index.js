@@ -1,3 +1,16 @@
+// импортируем кардочки
+import {
+  cards,
+  popupElement,
+  popupImage,
+  popupButtonClose,
+  imagePopupText,
+  imageTemplateCard,
+  Card,
+} from "./Card.js";
+
+// валидацию импортируем
+import { FormValidator, settings } from "./validate.js";
 // 1 попап
 const editButton = document.querySelector(".profile__edit-button");
 const profilePopup = document.querySelector("#edit");
@@ -30,6 +43,10 @@ editButton.addEventListener("click", function () {
   nameFieldElement.value = titleElement.textContent;
   surnameFieldElement.value = subtitleElement.textContent;
   openPopup(popupEditProfile);
+
+  // вызываем валидацию
+  const profileEditFormValidator = new FormValidator(settings, formEditProfile);
+  profileEditFormValidator.enableValidation();
 });
 
 // функция закрытия всех крестиков 0_0
@@ -62,10 +79,15 @@ const buttonSaveTwo = add.querySelector(".popup__button"); // Кнопка
 
 addButton.addEventListener("click", function () {
   openPopup(popupAddCard);
-  buttonSaveTwo.classList.add("popup__button_invalid");
-  buttonSaveTwo.classList.remove("popup__button_valid");
-  buttonSaveTwo.setAttribute("disabled", true);
+  // buttonSaveTwo.classList.add("popup__button_invalid");
+  // buttonSaveTwo.classList.remove("popup__button_valid");
+  // buttonSaveTwo.setAttribute("disabled", true);
+  //* валидация кнопки
   // эти 3 строчки для того, чтобы при повторном нажатии кнопка была неактивна
+
+  // вызываем валидацию
+  const cardAddFormValidator = new FormValidator(settings, formAddCard);
+  cardAddFormValidator.enableValidation();
 });
 
 const closePopupAdd = add.querySelector(".popup__close");
@@ -79,10 +101,16 @@ const formAddCard = add.querySelector(".popup__form");
 formAddCard.addEventListener("submit", function (evt) {
   evt.preventDefault();
   closePopup(popupAddCard);
-  submitAddCardPopup();
-  // validateForm();
 });
 
+// функция закрытия попапов (1  2  3)
+// document.addEventListener("keydown", function (evt) {
+//   if (evt.key === "Escape") {
+//     closePopup(popup);
+//     closePopup(popupAddCard);
+//     closePopup(picture);
+//   }
+// });
 // функция закрытия попапов (1  2  3)
 function closeWithEsc(evt) {
   if (evt.key === "Escape") {
@@ -103,4 +131,21 @@ OverleyClosePopups.forEach((overley) => {
       closePopup(picture);
     }
   });
+});
+
+// добавление карточек через 2-ой попап
+const inputPopupName = add.querySelector("#name-card");
+const inputPopupLink = add.querySelector("#url-card");
+
+const popupButtonCard = add.querySelector("#popupButtonCard");
+
+popupButtonCard.addEventListener("click", (evt) => {
+  // он берет вводимые данные и отправляет их в консоль (2 попап)
+  console.log(inputPopupName.value);
+  console.log(inputPopupLink.value);
+  const card = new Card(inputPopupName.value, inputPopupLink.value);
+  const cardElement = card.generateCard();
+  document.querySelector(".elements").prepend(cardElement);
+  inputPopupName.value = "";
+  inputPopupLink.value = "";
 });

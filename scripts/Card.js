@@ -1,4 +1,5 @@
-// массив с карточками
+// карточки
+
 const cards = [
   {
     text: "Архыз",
@@ -26,141 +27,204 @@ const cards = [
   },
 ];
 
-// // OOП
-// class Card {
-//   constructor(text, link) {
-//     this._text = text;
-//     this._link = link;
-//   }
+// ООП
 
-//   // это для вызова всех товарищей
-//   generateCard() {
-//     // вызывает элемент копирования карточки
-//     this._element = this._getTemplate();
+const popupElement = document.querySelector("#picture");
+const popupImage = picture.querySelector(".popup__figure-image");
+const popupButtonClose = picture.querySelector(".popup__close");
+const imagePopupText = picture.querySelector(".popup__figure-text");
+const imageTemplateCard = document.querySelector(".element__image");
 
-//     this._element.querySelector(".element__image").src = this._link; // `url(${this._image})`;
-//     this._element.querySelector(".element__title").textContent = this._text;
-
-//     return this._element;
-//   }
-
-//   //это для появления загрузку карточек на сайт
-//   _getTemplate() {
-//     const cardElement = document
-//       .querySelector(".template")
-//       .content.querySelector(".element")
-//       .cloneNode(true);
-
-//     return cardElement;
-//   }
-
-//   _renderInitialCards() {
-//     cards.forEach((card) => {
-//       const currentCard = createCardNode(card.text, card.link);
-//       containerCards.append(currentCard);
-//     });
-//   }
-// }
-
-// cards.forEach((item) => {
-//   const card = new Card(item.text, item.link);
-//   const cardElement = card.generateCard();
-
-//   document.querySelector(".elements").append(cardElement);
-// });
-
-//!!!!!!!!!!
-
-// карточки
-
-// через template появление карточек на странице
-
-const containerCards = document.querySelector(".elements");
-const template = document.querySelector(".template");
-
-const inputPopupName = add.querySelector(".popup__input_type_name"); // текст
-
-const inputPopupLink = add.querySelector(".popup__input_type_url"); // ссылка
-
-const renderInitialCards = () => {
-  cards.forEach((card) => {
-    const currentCard = createCardNode(card.text, card.link);
-    containerCards.append(currentCard);
-  });
+export {
+  cards,
+  popupElement,
+  popupImage,
+  popupButtonClose,
+  imagePopupText,
+  imageTemplateCard,
 };
 
-// попап 3 (с картинкой):
-//  ссылка (попап с картинкой)
-const imagePopup = picture.querySelector(".popup__figure-image");
+// отрисовка карточек на старницу
 
-// текст попапа с картинкой
-const imagePopupText = picture.querySelector(".popup__figure-text");
+export class Card {
+  constructor(text, link) {
+    this._text = text;
+    this._link = link;
+    // this._templateSelector = templateSelector;
+  }
 
-// попап с картинкой (закрыть)
-// const closePopupThird = document.querySelector(".popup__close-third");
-const closePopupPicture = picture.querySelector(".popup__close");
-closePopupPicture.addEventListener("click", function () {
-  // picture.classList.remove("popup_opened");
-  closePopup(picture);
+  // метод добавление темплейт элемента
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(".template")
+      .content.querySelector(".element")
+      .cloneNode(true);
+
+    return cardElement;
+  }
+
+  // метод добавления лайка
+  _likeButton() {
+    this._element
+      .querySelector(".element__heart")
+      .classList.toggle("element__heart_active");
+  }
+  // установить кнопку лайк на щелчок
+  _setLikeButton() {
+    this._element
+      .querySelector(".element__heart")
+      .addEventListener("click", () => {
+        this._likeButton();
+      });
+  }
+
+  // удаление карточки
+  _deleteCard = () => {
+    this._element.remove();
+  };
+
+  // открыть попап с картинкой
+  _popupImageOpen() {
+    popupImage.src = this._link;
+    imagePopupText.textContent = this._text; // это считывает текст попапа с картинкой
+    openPopup(picture);
+  }
+  // закрыть попап с картинкой
+  _popupImageClose() {
+    popupImage.src = "";
+    closePopup(picture);
+  }
+  // установить открытие и закрытие попапа с картнкой
+  _setPopupImage() {
+    this._element
+      .querySelector(".element__image")
+      .addEventListener("click", () => {
+        this._popupImageOpen();
+      });
+
+    popupButtonClose.addEventListener("click", () => {
+      this._popupImageClose();
+    });
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+
+    // попап с картинкой
+    this._setPopupImage();
+
+    //кнопка лайк
+    this._setLikeButton();
+
+    //удаление карточки
+    this._element
+      .querySelector(".element__trash")
+      .addEventListener("click", this._deleteCard);
+
+    // ссылка на картинку и ссылка на текст в карточке
+    this._element.querySelector(".element__image").src = this._link;
+    this._element.querySelector(".element__title").textContent = this._text;
+
+    return this._element;
+  }
+}
+
+// обходим массив, чтобы данные, которые мы вносили выше появились
+cards.forEach((item) => {
+  const card = new Card(item.text, item.link);
+  const cardElement = card.generateCard();
+
+  document.querySelector(".elements").append(cardElement);
 });
 
-const createCardNode = (text, link) => {
-  const currentCard = template.content.cloneNode(true);
+//* // через template появление карточек на странице
 
-  // текст карточки
-  const currentText = currentCard.querySelector(".element__title");
-  currentText.textContent = text;
+// const containerCards = document.querySelector(".elements");
+// const template = document.querySelector(".template");
 
-  // ссылка карточки
-  const cardImageLink = currentCard.querySelector(".element__image");
-  cardImageLink.src = link;
-  cardImageLink.alt = text;
+// const inputPopupName = add.querySelector(".popup__input_type_name"); // текст
 
-  // это для кнопки удаления
-  const deleteButton = currentCard.querySelector(".element__trash");
-  deleteButton.addEventListener("click", deleteCard);
+// const inputPopupLink = add.querySelector(".popup__input_type_url"); // ссылка
 
-  // это для кнопки лайка
-  const likeButton = currentCard.querySelector(".element__heart");
-  likeButton.addEventListener("click", likeCardElement);
+// const renderInitialCards = () => {
+//   cards.forEach((card) => {
+//     const currentCard = createCardNode(card.text, card.link);
+//     containerCards.append(currentCard);
+//   });
+// };
 
-  // попап с картинкой (открыть)
-  cardImageLink.addEventListener("click", function () {
-    // если что, в скобках был evt
-    // picture.classList.add("popup_opened");
-    openPopup(picture);
+// // попап 3 (с картинкой):
+// //  ссылка (попап с картинкой)
+// const imagePopup = picture.querySelector(".popup__figure-image");
 
-    // попап 3 (с картинкой):
-    // добавление картинки в попап 3
-    // ссылка (попап с картинкой)
-    imagePopup.src = link;
-    imagePopup.alt = text;
+// // текст попапа с картинкой
+// const imagePopupText = picture.querySelector(".popup__figure-text");
 
-    // текст попапа с картинкой
-    imagePopupText.textContent = text;
-  });
+// // попап с картинкой (закрыть)
+// // const closePopupThird = document.querySelector(".popup__close-third");
+// const closePopupPicture = picture.querySelector(".popup__close");
+// closePopupPicture.addEventListener("click", function () {
+//   // picture.classList.remove("popup_opened");
+//   closePopup(picture);
+// });
 
-  return currentCard;
-};
+// const createCardNode = (text, link) => {
+//   const currentCard = template.content.cloneNode(true);
 
-// добавление карточек через попап
-const submitAddCardPopup = () => {
-  // evt.preventDefault();
-  const card = createCardNode(inputPopupName.value, inputPopupLink.value); // name
-  containerCards.prepend(card);
-  inputPopupName.value = "";
-  inputPopupLink.value = "";
-};
+//   // текст карточки
+//   const currentText = currentCard.querySelector(".element__title");
+//   currentText.textContent = text;
 
-// удаление карточек
-const deleteCard = (evt) => {
-  const cardDeleteElement = evt.target.closest(".element");
-  cardDeleteElement.remove();
-};
+//   // ссылка карточки
+//   const cardImageLink = currentCard.querySelector(".element__image");
+//   cardImageLink.src = link;
+//   cardImageLink.alt = text;
 
-// лайк
-const likeCardElement = (evt) => {
-  const likeCard = evt.target.classList.toggle("element__heart_active");
-};
+//   // это для кнопки удаления
+//   const deleteButton = currentCard.querySelector(".element__trash");
+//   deleteButton.addEventListener("click", deleteCard);
 
-renderInitialCards();
+//   // это для кнопки лайка
+//   const likeButton = currentCard.querySelector(".element__heart");
+//   likeButton.addEventListener("click", likeCardElement);
+
+//   // попап с картинкой (открыть)
+//   cardImageLink.addEventListener("click", function () {
+//     // если что, в скобках был evt
+//     // picture.classList.add("popup_opened");
+//     openPopup(picture);
+
+//     // добавление картинки в попап 3
+//     // попап 3 (с картинкой):
+//     // ссылка (попап с картинкой)
+//     imagePopup.src = link;
+//     imagePopup.alt = text;
+
+//     // текст попапа с картинкой
+//     imagePopupText.textContent = text;
+//   });
+
+//   return currentCard;
+// };
+
+// // добавление карточек через попап
+// const submitAddCardPopup = () => {
+//   // evt.preventDefault();
+//   const card = createCardNode(inputPopupName.value, inputPopupLink.value); // name
+//   containerCards.prepend(card);
+//   inputPopupName.value = "";
+//   inputPopupLink.value = "";
+// };
+
+// // удаление карточек
+// const deleteCard = (evt) => {
+//   const cardDeleteElement = evt.target.closest(".element");
+//   cardDeleteElement.remove();
+// };
+
+// // лайк
+// const likeCardElement = (evt) => {
+//   const likeCard = evt.target.classList.toggle("element__heart_active");
+// };
+
+// renderInitialCards();
