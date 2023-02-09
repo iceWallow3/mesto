@@ -1,19 +1,14 @@
 // импортируем кардочки
-import {
-  cards,
-  popupElement,
-  popupImage,
-  popupButtonClose,
-  imagePopupText,
-  imageTemplateCard,
-  Card,
-} from "./Card.js";
+import { popupImage, imagePopupText, Card } from "./Card.js";
+
+// импортируем массив с карточками
+import { cards } from "./cards.js";
 
 // валидацию импортируем
 import { FormValidator } from "./FormValidator.js"; // , settings
 // 1 попап
 const editButton = document.querySelector(".profile__edit-button");
-const profilePopup = document.querySelector("#edit");
+// const profilePopup = document.querySelector("#edit");
 
 const titleElement = document.querySelector(".profile__title");
 const nameFieldElement = document.querySelector(".popup__input_type_name");
@@ -35,13 +30,13 @@ const popupAddCard = document.querySelector("#add");
 
 // const buttonSaveAdd = add.querySelector(".popup__button"); // Кнопка
 
-const closePopupAdd = add.querySelector(".popup__close");
+const closePopupAdd = document.querySelector("#btnCloseAdd");
 
 // добавление карточек через 2-ой попап
 const inputPopupName = add.querySelector("#name-card");
 const inputPopupLink = add.querySelector("#url-card");
 
-const popupButtonCard = add.querySelector("#popupButtonCard");
+// const popupButtonCard = add.querySelector("#popupButtonCard");
 
 const formAddCard = add.querySelector(".popup__form");
 
@@ -59,9 +54,6 @@ const settings = {
   errorClass: "popup__input_error",
 };
 
-export { settings };
-
-export { openPopup, closePopup };
 // функция открытия попапа
 function openPopup(popupElement) {
   popupElement.classList.add("popup_opened");
@@ -95,6 +87,7 @@ formEditProfile.addEventListener("submit", function (evt) {
   closePopup(popupEditProfile);
   titleElement.textContent = nameFieldElement.value;
   subtitleElement.textContent = surnameFieldElement.value;
+  Card;
 });
 
 //  2 попап (добавления карточки)
@@ -106,6 +99,8 @@ addButton.addEventListener("click", function () {
   // buttonSaveTwo.setAttribute("disabled", true);
   //* валидация кнопки
   // эти 3 строчки для того, чтобы при повторном нажатии кнопка была неактивна
+  const cardAddFormValidator = new FormValidator(settings, formAddCard);
+  cardAddFormValidator.enableValidation();
 });
 
 // вызываем валидацию
@@ -114,23 +109,6 @@ cardAddFormValidator.enableValidation();
 
 closePopupAdd.addEventListener("click", function () {
   closePopup(popupAddCard);
-});
-
-//функция добавления карточки
-function cardAddInPopup() {
-  const card = new Card(inputPopupName.value, inputPopupLink.value);
-  const cardElement = card.generateCard();
-  allCards.prepend(cardElement);
-}
-
-// создание карточки через форму попапа добавления
-formAddCard.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-
-  cardAddInPopup(); // вызываем функцию добавления карточки
-  closePopup(popupAddCard);
-  inputPopupName.value = "";
-  inputPopupLink.value = "";
 });
 
 // функция закрытия попапа на оверлей
@@ -159,13 +137,59 @@ export function openPopupImage(name, link) {
   imagePopupText.textContent = name;
   openPopup(picture);
 }
-// вызов класса, который откроет картинку в попапе
-const element = new Card(openPopupImage); // data, templateSelector,
 
-// обходим массив, чтобы данные, которые мы вносили выше появились
-cards.forEach((item) => {
-  const card = new Card(item.text, item.link);
+//!!!!!!!!!!!!!
+const renderCards = (array) => {
+  array.forEach((item) => {
+    addCard(item.text, item.link);
+    allCards.append(cards);
+  });
+};
+function createCard(text, link) {
+  const card = new Card(text, link, ".template");
   const cardElement = card.generateCard();
-
-  document.querySelector(".elements").append(cardElement);
+  return cardElement;
+}
+const addCard = (text, link) => {
+  const card = createCard(text, link);
+  allCards.prepend(card);
+};
+formAddCard.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  addCard(inputPopupName.value, inputPopupLink.value);
+  closePopup(popupAddCard);
+  formAddCard.reset();
 });
+renderCards(cards);
+// // функция создания карточки через класс
+// function createCard(item) {
+//   const card = new Card(item.text, item.link, ".template");
+//   const cardElement = card.generateCard();
+
+//   allCards.append(cardElement);
+// }
+// // обходим массив, чтобы данные, которые мы вносили выше появились
+// cards.forEach((item) => {
+//   createCard(item);
+// });
+
+// //функция добавления карточки через попап
+// function cardAddInPopup() {
+//   const card = new Card(
+//     inputPopupName.value,
+//     inputPopupLink.value,
+//     ".template"
+//   );
+//   const cardElement = card.generateCard();
+//   allCards.prepend(cardElement);
+// }
+
+// // создание карточки через форму попапа добавления
+// formAddCard.addEventListener("submit", function (evt) {
+//   evt.preventDefault();
+
+//   cardAddInPopup(); // вызываем функцию добавления карточки
+//   closePopup(popupAddCard);
+//   inputPopupName.value = "";
+//   inputPopupLink.value = "";
+// });
