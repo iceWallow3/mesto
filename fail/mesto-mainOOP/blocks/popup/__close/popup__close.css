@@ -1,0 +1,29 @@
+.popup__close {
+  background-image: url(../../../images/krestBig.svg);
+  background-repeat: no-repeat;
+  background-size: 32px 32px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  background-color: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.popup__close:hover {
+  opacity: 0.6;
+  transition: ease-in-out 0.3s;
+}
+@media screen and (max-width: 640px) {
+  .popup__close {
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -36;
+    background-image: url(../../../images/krestSmall.svg);
+  }
+}

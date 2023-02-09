@@ -12,9 +12,9 @@ export { popupImage, imagePopupText };
 // отрисовка карточек на старницу
 
 export class Card {
-  constructor(text, link, templateSelector) {
-    this._text = text;
-    this._link = link;
+  constructor(data, templateSelector) {
+    this._text = data.text;
+    this._link = data.link;
     // this._openPopupImage = openPopupImage;
     this._templateSelector = templateSelector;
   }
@@ -44,9 +44,6 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    // ищем картинку и лайк один раз, чтобы потом больше не искать
-    this._elementImage = this._element.querySelector(".element__image");
-    this._elementLike = this._element.querySelector(".element__heart");
 
     // попап с картинкой
     this._element
@@ -56,7 +53,9 @@ export class Card {
       });
 
     //кнопка лайк
-    this._elementLike.addEventListener("click", this._likeButton);
+    this._element
+      .querySelector(".element__heart")
+      .addEventListener("click", this._likeButton);
 
     //удаление карточки
     this._element
@@ -64,8 +63,8 @@ export class Card {
       .addEventListener("click", this._deleteCard);
 
     // ссылка на картинку, alt и ссылка на текст в карточке
-    this._elementImage.src = this._link;
-    this._elementImage.alt = this._text;
+    this._element.querySelector(".element__image").src = this._link;
+    this._element.querySelector(".element__image").alt = this._text;
     this._element.querySelector(".element__title").textContent = this._text;
 
     return this._element;

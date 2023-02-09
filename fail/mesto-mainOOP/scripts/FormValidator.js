@@ -1,4 +1,6 @@
 //! Валидация ООП
+// импортируем все настройки из индекса
+import { settings } from "./index.js";
 
 export class FormValidator {
   constructor(data, formElement) {
@@ -60,21 +62,24 @@ export class FormValidator {
   // если поля НЕвалидные, тогда кнопка не работает и белая
   // а если поля валидные, тогда кнопка  работает и черная
   _toggleButtonState() {
-    const inputList = this._inputList;
-    if (!this._hasInvalidInput(inputList)) {
-      this.includeButtonSubmit();
+    if (!this._hasInvalidInput(this._inputList)) {
+      this.disabledButtonSubmit();
     } else {
-      this.disableButtonSubmit();
+      this.includedButtonSubmit();
     }
   }
-  // рабочая кнопка
-  includeButtonSubmit() {
-    this._buttonElement.disabled = false;
-    this._buttonElement.classList.remove(this._popupButtonInValid);
-  }
+
   // не рабочая кнопка
-  disableButtonSubmit() {
+  disabledButtonSubmit() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.classList.add(this._popupButtonValid);
+    this._buttonElement.classList.remove(this._popupButtonInValid);
+    this._buttonElement.removeAttribute("disabled");
+  }
+  // рабочая кнопка
+  includedButtonSubmit() {
     this._buttonElement.classList.add(this._popupButtonInValid);
+    this._buttonElement.classList.remove(this._popupButtonValid);
     this._buttonElement.setAttribute("disabled", true);
   }
 

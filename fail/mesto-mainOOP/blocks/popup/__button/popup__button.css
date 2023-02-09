@@ -16,6 +16,15 @@
   cursor: pointer;
 }
 
+/* .popup__button:valid {
+  background: #000000;
+  color: white;
+}
+
+.popup__button:invalid {
+  background: white;
+  color: black;
+} */
 .popup__button_valid {
   background: #000000;
   color: white;
@@ -27,6 +36,7 @@
   border: 1px solid #000000;
   opacity: 0.2;
 }
+/* opacity: 0.2; */
 
 .popup__button:hover {
   opacity: 0.8;
