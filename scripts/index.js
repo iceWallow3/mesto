@@ -138,22 +138,26 @@ export function openPopupImage(name, link) {
   openPopup(picture);
 }
 
-//!!!!!!!!!!!!!
+//!!!!!!!!!!!!! функции создания и добавления карточек
+// функция создает карточки
+function createCard(text, link) {
+  const card = new Card(text, link, ".template");
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+// функция добавляет карточки
+const addCard = (text, link) => {
+  const card = createCard(text, link);
+  allCards.prepend(card);
+};
+// функция обходит массив и добавляет карточки на экран
 const renderCards = (array) => {
   array.forEach((item) => {
     addCard(item.text, item.link);
     allCards.append(cards);
   });
 };
-function createCard(text, link) {
-  const card = new Card(text, link, ".template");
-  const cardElement = card.generateCard();
-  return cardElement;
-}
-const addCard = (text, link) => {
-  const card = createCard(text, link);
-  allCards.prepend(card);
-};
+// форма в которой вызывается функция добавления карточки
 formAddCard.addEventListener("submit", (evt) => {
   evt.preventDefault();
   addCard(inputPopupName.value, inputPopupLink.value);
