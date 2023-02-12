@@ -1,5 +1,5 @@
 // импортируем кардочки
-import { popupImage, imagePopupText, Card } from "./Card.js";
+import { Card } from "./Card.js";
 
 // импортируем массив с карточками
 import { cards } from "./cards.js";
@@ -33,15 +33,24 @@ const popupAddCard = document.querySelector("#add");
 const closePopupAdd = document.querySelector("#btnCloseAdd");
 
 // добавление карточек через 2-ой попап
-const inputPopupName = add.querySelector("#name-card");
-const inputPopupLink = add.querySelector("#url-card");
+const inputPopupName = document.querySelector("#name-card");
+const inputPopupLink = document.querySelector("#url-card");
 
-// const popupButtonCard = add.querySelector("#popupButtonCard");
+const popupButtonCard = document.querySelector("#popupButtonCard");
+const popupEditButton = document.querySelector("#popupButtonSave");
+console.log(popupEditButton);
 
-const formAddCard = add.querySelector(".popup__form");
+const formAddCard = document.querySelector("#formAdd");
 
 // все карточки (для созданияы)
 const allCards = document.querySelector(".elements"); //.prepend(cardElement);
+
+// картинка попупа с картинкой
+const popupImage = picture.querySelector(".popup__figure-image");
+// текст попупа с картинкой
+const imagePopupText = picture.querySelector(".popup__figure-text");
+
+export { popupImage, imagePopupText };
 
 // настройки классов для валидации
 const settings = {
@@ -53,6 +62,11 @@ const settings = {
   popupButtonInValid: "popup__button_invalid",
   errorClass: "popup__input_error",
 };
+
+const profileEditFormValidator = new FormValidator(settings, formEditProfile);
+// profileEditFormValidator.enableValidation();
+const cardAddFormValidator = new FormValidator(settings, formAddCard);
+// cardAddFormValidator.enableValidation();
 
 // функция открытия попапа
 function openPopup(popupElement) {
@@ -69,10 +83,10 @@ function closePopup(popupElement) {
 editButton.addEventListener("click", function () {
   nameFieldElement.value = titleElement.textContent;
   surnameFieldElement.value = subtitleElement.textContent;
+
   openPopup(popupEditProfile);
 
   // вызываем валидацию
-  const profileEditFormValidator = new FormValidator(settings, formEditProfile);
   profileEditFormValidator.enableValidation();
 });
 
@@ -91,21 +105,18 @@ formEditProfile.addEventListener("submit", function (evt) {
 });
 
 //  2 попап (добавления карточки)
-
 addButton.addEventListener("click", function () {
   openPopup(popupAddCard);
-  // buttonSaveTwo.classList.add("popup__button_invalid");
-  // buttonSaveTwo.classList.remove("popup__button_valid");
-  // buttonSaveTwo.setAttribute("disabled", true);
+  // эти команды делают кнопку невалидной, когда открывается 2 попап
+  // popupButtonCard.classList.add("popup__button_invalid");
+  // popupButtonCard.setAttribute("disabled", true);
   //* валидация кнопки
-  // эти 3 строчки для того, чтобы при повторном нажатии кнопка была неактивна
-  const cardAddFormValidator = new FormValidator(settings, formAddCard);
   cardAddFormValidator.enableValidation();
 });
 
 // вызываем валидацию
-const cardAddFormValidator = new FormValidator(settings, formAddCard);
-cardAddFormValidator.enableValidation();
+// const cardAddFormValidator = new FormValidator(settings, formAddCard);
+// cardAddFormValidator.enableValidation();
 
 closePopupAdd.addEventListener("click", function () {
   closePopup(popupAddCard);

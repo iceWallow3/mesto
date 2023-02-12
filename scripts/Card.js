@@ -1,13 +1,10 @@
 // карточки
 // импортируем массив с карточками
-import { openPopupImage } from "./index.js";
+import { openPopupImage, popupImage, imagePopupText } from "./index.js";
 
 // ООП
 
-const popupImage = picture.querySelector(".popup__figure-image");
-const imagePopupText = picture.querySelector(".popup__figure-text");
-
-export { popupImage, imagePopupText };
+// export { popupImage, imagePopupText };
 
 // отрисовка карточек на старницу
 
@@ -49,11 +46,9 @@ export class Card {
     this._elementLike = this._element.querySelector(".element__heart");
 
     // попап с картинкой
-    this._element
-      .querySelector(".element__image")
-      .addEventListener("click", () => {
-        openPopupImage(this._text, this._link);
-      });
+    this._elementImage.addEventListener("click", () => {
+      openPopupImage(this._text, this._link);
+    });
 
     //кнопка лайк
     this._elementLike.addEventListener("click", this._likeButton);
