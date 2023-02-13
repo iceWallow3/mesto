@@ -62,11 +62,11 @@ const settings = {
   popupButtonInValid: "popup__button_invalid",
   errorClass: "popup__input_error",
 };
-
+// вызываем валидацию
 const profileEditFormValidator = new FormValidator(settings, formEditProfile);
-// profileEditFormValidator.enableValidation();
 const cardAddFormValidator = new FormValidator(settings, formAddCard);
-// cardAddFormValidator.enableValidation();
+profileEditFormValidator.enableValidation();
+cardAddFormValidator.enableValidation();
 
 // функция открытия попапа
 function openPopup(popupElement) {
@@ -79,15 +79,14 @@ function closePopup(popupElement) {
   popupElement.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeWithEsc);
 }
-
 editButton.addEventListener("click", function () {
   nameFieldElement.value = titleElement.textContent;
   surnameFieldElement.value = subtitleElement.textContent;
 
   openPopup(popupEditProfile);
-
-  // вызываем валидацию
-  profileEditFormValidator.enableValidation();
+  // попап редактирования всегда будет с валидной кнопкой при открытии (легкая валидация)
+  popupEditButton.classList.remove("popup__button_invalid");
+  popupEditButton.removeAttribute("disabled");
 });
 
 closeButtons.forEach((button) => {
@@ -107,16 +106,10 @@ formEditProfile.addEventListener("submit", function (evt) {
 //  2 попап (добавления карточки)
 addButton.addEventListener("click", function () {
   openPopup(popupAddCard);
-  // эти команды делают кнопку невалидной, когда открывается 2 попап
-  // popupButtonCard.classList.add("popup__button_invalid");
-  // popupButtonCard.setAttribute("disabled", true);
-  //* валидация кнопки
-  cardAddFormValidator.enableValidation();
+  // попап добавления карточки всегда будет с невалидной кнопкой в начале (легкая валидация)
+  popupButtonCard.classList.add("popup__button_invalid");
+  popupButtonCard.setAttribute("disabled", true);
 });
-
-// вызываем валидацию
-// const cardAddFormValidator = new FormValidator(settings, formAddCard);
-// cardAddFormValidator.enableValidation();
 
 closePopupAdd.addEventListener("click", function () {
   closePopup(popupAddCard);
@@ -176,6 +169,8 @@ formAddCard.addEventListener("submit", (evt) => {
   formAddCard.reset();
 });
 renderCards(cards);
+// formEditProfile.enableValidation();
+// formAddCard.enableValidation();
 // // функция создания карточки через класс
 // function createCard(item) {
 //   const card = new Card(item.text, item.link, ".template");
