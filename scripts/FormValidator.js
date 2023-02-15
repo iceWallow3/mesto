@@ -94,6 +94,7 @@ export class FormValidator {
     this._inputList.forEach((inputElement) => {
       this._hideOutError(inputElement);
     });
+    this._toggleButtonState();
   }
 
   // запускаем валидацю
