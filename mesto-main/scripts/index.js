@@ -38,7 +38,6 @@ const inputPopupLink = document.querySelector("#url-card");
 
 const popupButtonCard = document.querySelector("#popupButtonCard");
 const popupEditButton = document.querySelector("#popupButtonSave");
-console.log(popupEditButton);
 
 const formAddCard = document.querySelector("#formAdd");
 
@@ -65,6 +64,7 @@ const settings = {
 // вызываем валидацию
 const profileEditFormValidator = new FormValidator(settings, formEditProfile);
 const cardAddFormValidator = new FormValidator(settings, formAddCard);
+
 profileEditFormValidator.enableValidation();
 cardAddFormValidator.enableValidation();
 
@@ -82,11 +82,9 @@ function closePopup(popupElement) {
 editButton.addEventListener("click", function () {
   nameFieldElement.value = titleElement.textContent;
   surnameFieldElement.value = subtitleElement.textContent;
-
+  // при открытии попапа ошибок быть не должно (удали ошибки)
+  profileEditFormValidator.removeErrors(); // это исправляет баг, когда при открытии кнопка была недоступна, даже если были валид. даные
   openPopup(popupEditProfile);
-  // попап редактирования всегда будет с валидной кнопкой при открытии (легкая валидация)
-  popupEditButton.classList.remove("popup__button_invalid");
-  popupEditButton.removeAttribute("disabled");
 });
 
 closeButtons.forEach((button) => {
@@ -100,19 +98,19 @@ formEditProfile.addEventListener("submit", function (evt) {
   closePopup(popupEditProfile);
   titleElement.textContent = nameFieldElement.value;
   subtitleElement.textContent = surnameFieldElement.value;
-  Card;
+  // Card;
 });
 
 //  2 попап (добавления карточки)
 addButton.addEventListener("click", function () {
   openPopup(popupAddCard);
-  // попап добавления карточки всегда будет с невалидной кнопкой в начале (легкая валидация)
-  popupButtonCard.classList.add("popup__button_invalid");
-  popupButtonCard.setAttribute("disabled", true);
 });
 
 closePopupAdd.addEventListener("click", function () {
   closePopup(popupAddCard);
+  // когда мы закрываем попап, данные удаляются, кнопка неактивна
+  formAddCard.reset();
+  cardAddFormValidator.removeErrors();
 });
 
 // функция закрытия попапа на оверлей
@@ -167,6 +165,8 @@ formAddCard.addEventListener("submit", (evt) => {
   addCard(inputPopupName.value, inputPopupLink.value);
   closePopup(popupAddCard);
   formAddCard.reset();
+  // при открытии попапа ошибок быть не должно (удали ошибки)
+  cardAddFormValidator.removeErrors(); // исправляет баг, когда после отправления 1 карточки, кнопка валид. не смотря на пустые инпуты
 });
 renderCards(cards);
 // formEditProfile.enableValidation();
